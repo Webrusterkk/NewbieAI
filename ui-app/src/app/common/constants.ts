@@ -1,0 +1,25 @@
+export class Constants {
+    public static VesselTypes = [
+        "BARGE-CARGOSOLID",
+        "BARGE-LIQUIDCARGO",
+        "BARGE-OTHER",
+        "BARGE-UNSPECIFIED",
+        "CARGO-LIQUID",
+        "CARGO-SOLID",
+        "DYNAMICALLYSUPPORTEDCRAFT",
+        "FERRY",
+        "FISHING",
+        "NAVALSHIP",
+        "OILRIG-SEMISUBMERSIBLE",
+        "OTHEROBJECT",
+        "PASSENGER",
+        "RESEARCH/SURVEY-OTHER",
+        "SAILINGVESSEL",
+        "SERVICESHIP",
+        "SHIPSBOAT",
+        "SPECIALTY",
+        "SURVEY/RESEARCH",
+        "TANKER-CHEMICAL/ORE/OIL/CRUDE",
+        "TANKER-OTHER",
+        "TUG"]
+}

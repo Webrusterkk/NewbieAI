@@ -1,22 +1,53 @@
 <div>
-    <!-- <form (ngSubmit)="onSubmit()" #homeForm="myForm"> -->
-        <mat-form-field>
-            <input matInput placeholder="Vessel Type" />
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Vessel Age">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Source Port">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Destination Port">
-        </mat-form-field>
-        <!-- <mat-form-field>
-            <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="date">
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field> -->
-        <button mat-raised-button>Calculate Risk</button>
-    <!-- </form> -->
+    <mat-card>
+        <mat-card-title>
+            Please give the below details to estimate risk
+        </mat-card-title>
+        <mat-card-content>
+            <form (ngSubmit)="onSubmit()" [formGroup]="homeForm" class="form">
+                <table>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input type="text" placeholder="Vessel Type" aria-label="Vessel Type" matInput formControlName="vesselType" [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of vesselTypes" [value]="option | titlecase">
+                                        {{ option | titlecase}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                <input matInput placeholder="Vessel Age" formControlName="vesselAge">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input matInput placeholder="Source Port" formControlName="sourcePort">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                <input matInput placeholder="Destination Port" formControlName="destinationPort">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <br />
+                    <tr>
+                        <td>
+                            <mat-form-field >
+                                <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Date of Journey">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker touchUi="true" #picker></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <button mat-raised-button>Calculate Risk</button>
+                </table>
+            </form>
+        </mat-card-content>
+    </mat-card>
 </div>
