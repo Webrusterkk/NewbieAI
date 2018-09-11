@@ -1,5 +1,22 @@
 <div>
-    <mat-form-field>
-        <input matInput placeholder="Vessel Age">
-    </mat-form-field>
+    <!-- <form (ngSubmit)="onSubmit()" #homeForm="myForm"> -->
+        <mat-form-field>
+            <input matInput placeholder="Vessel Type" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Vessel Age">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Source Port">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Destination Port">
+        </mat-form-field>
+        <!-- <mat-form-field>
+            <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field> -->
+        <button mat-raised-button>Calculate Risk</button>
+    <!-- </form> -->
 </div>

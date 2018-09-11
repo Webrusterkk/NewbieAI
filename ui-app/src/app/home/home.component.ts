@@ -9,21 +9,19 @@ import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms"
 })
 export class HomeComponent implements OnInit {
     title: string;
-    public options: FormGroup;
-    age : FormControl;
+    public homeForm: FormGroup;
     constructor(private formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
         this.title = "Home - Newbie";
 
-        this.options = this.formBuilder.group({
+        this.homeForm = this.formBuilder.group({
             vesselType: [0],
             vesselAge: [""],
             sourcePort: [""],
-            destinationPort: [""]
+            destinationPort: [""],
+            date: []
         })
-
-        this.age = new FormControl();
     }
 }
