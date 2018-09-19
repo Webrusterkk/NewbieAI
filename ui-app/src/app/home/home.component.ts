@@ -4,12 +4,13 @@ import { Constants } from "../common/constants";
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { SimpleObject } from "../models/simple-object";
+import { HomeService } from "./home.service";
 
 @Component({
     selector: "home",
     templateUrl: "./home.component.html",
     styleUrls: ["./home.component.css"],
-    providers: [FormBuilder]
+    providers: [HomeService]
 })
 export class HomeComponent implements OnInit {
     title: string;
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
     vesselSubTypes: string[] = Constants.VesselSubTypes;
     ports: string[] = Constants.Prots;
     // types: SimpleObject[] = Constants.VesselTypes;
-    constructor(private formBuilder: FormBuilder) {
+    constructor(private formBuilder: FormBuilder,
+        private _homeService: HomeService) {
     }
 
     ngOnInit() {

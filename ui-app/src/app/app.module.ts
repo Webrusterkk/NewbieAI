@@ -13,6 +13,7 @@ import {
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HomeComponent } from './home/home.component';
     HomeComponent
   ],
   imports: [
+    HttpModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
