@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Machine Learning 
+# # Machine Learning
 # ## Supervised Learning
 # ## Project: Dynamic Pricing Model
 
@@ -35,42 +35,18 @@ print("The dataset has {} rows and {} columns".format(n_rows, n_columns))
 
 # Extract feature columns
 feature_cols = ['YearBuilt', 'Gross Tonnage', 'Vessel Type','Vessel Sub Type', 'Hull Type', 'Weather','Wind Speed', 'Wind Direction','Sea State' ,'Departure' ,'Destination']
-vectorizer = TfidfVectorizer(min_df=5)
 
-vessel_data['Destination'] = vessel_data['Destination'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
-vessel_data['Destination'] = vectorizer.fit_transform(vessel_data["Destination"])
+columns_to_format = ['Gross Tonnage', 'Vessel Type','Vessel Sub Type', 'Hull Type', 'Weather', 'Wind Direction','Sea State' ,'Departure' ,'Destination']
 
+def format_data(col_name):
+    global vectorizer
+    vectorizer = TfidfVectorizer(min_df=5)
+    vessel_data[col_name] = vessel_data[col_name].str.lower().replace('[^a-zA-Z0-9]', ' ', regex=True)
+    vessel_data[col_name] = vectorizer.fit_transform(vessel_data[col_name])
 
-vessel_data['Vessel Type'] = vessel_data['Vessel Type'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
-vessel_data['Vessel Type'] = vectorizer.fit_transform(vessel_data["Vessel Type"])
-
-vessel_data['Vessel Sub Type'] = vessel_data['Vessel Sub Type'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
-vessel_data['Vessel Sub Type'] = vectorizer.fit_transform(vessel_data["Vessel Sub Type"])
-
-
-vessel_data['Gross Tonnage'] = vessel_data['Gross Tonnage'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
-vessel_data['Gross Tonnage'] = vectorizer.fit_transform(vessel_data["Gross Tonnage"])
-
-
-vessel_data['Hull Type'] = vessel_data['Hull Type'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
-vessel_data['Hull Type'] = vectorizer.fit_transform(vessel_data["Hull Type"])
-
-
-vessel_data['Weather'] = vessel_data['Weather'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
-vessel_data['Weather'] = vectorizer.fit_transform(vessel_data["Weather"])
-
-
-vessel_data['Wind Direction'] = vessel_data['Wind Direction'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
-vessel_data['Wind Direction'] = vectorizer.fit_transform(vessel_data["Wind Direction"])
-
-
-
-vessel_data['Sea State'] = vessel_data['Sea State'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
-vessel_data['Sea State'] = vectorizer.fit_transform(vessel_data["Sea State"])
-
-
-vessel_data['Departure'] = vessel_data['Departure'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
-vessel_data['Departure'] = vectorizer.fit_transform(vessel_data["Departure"])
+for i in columns_to_format:
+    format_data(i)
+    print(i)
 
 
 # Extract target column 'passed'
@@ -146,7 +122,7 @@ print("Testing set has {} samples.".format(X_test.shape[0]))
 def train_classifier(clf, X_train, y_train):
     ''' Fits a classifier to the training data. '''
 
-    # Start the clock, train the classifier, then stop the clock 
+    # Start the clock, train the classifier, then stop the clock
 
     start = time()
     clf.fit(X_train, y_train)
@@ -241,9 +217,9 @@ for clf in [clf_C]:
 # ### Question 3 - Final F<sub>1</sub> Score
 # *What is the final model's F<sub>1</sub> score for training and testing? How does that score compare to the untuned model?*
 
-# **Answer: ** 
-# 
+# **Answer: **
+#
 # As it turns out, the final model's performance has infact slightly increased, though not by a huge margin. The final model's F1 score is 80.5%.
 
-# > **Note**: Once you have completed all of the code implementations and successfully answered each question above, you may finalize your work by exporting the iPython Notebook as an HTML document. You can do this by using the menu above and navigating to  
+# > **Note**: Once you have completed all of the code implementations and successfully answered each question above, you may finalize your work by exporting the iPython Notebook as an HTML document. You can do this by using the menu above and navigating to
 # **File -> Download as -> HTML (.html)**. Include the finished document along with this notebook as your submission.
