@@ -39,40 +39,39 @@ vectorizer = TfidfVectorizer(min_df=5)
 
 vessel_data['Destination'] = vessel_data['Destination'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
 vessel_data['Destination'] = vectorizer.fit_transform(vessel_data["Destination"])
-print(vessel_data['Destination'])
+
 
 vessel_data['Vessel Type'] = vessel_data['Vessel Type'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
 vessel_data['Vessel Type'] = vectorizer.fit_transform(vessel_data["Vessel Type"])
-print(vessel_data['Vessel Type'])
 
 vessel_data['Vessel Sub Type'] = vessel_data['Vessel Sub Type'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
-vessel_data['Vessel Sub Type'] = vectorizer.fit_transform(vessel_data["Destination"])
-print(vessel_data['Vessel Sub Type'])
+vessel_data['Vessel Sub Type'] = vectorizer.fit_transform(vessel_data["Vessel Sub Type"])
+
 
 vessel_data['Gross Tonnage'] = vessel_data['Gross Tonnage'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
 vessel_data['Gross Tonnage'] = vectorizer.fit_transform(vessel_data["Gross Tonnage"])
-print(vessel_data['Gross Tonnage'])
+
 
 vessel_data['Hull Type'] = vessel_data['Hull Type'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
 vessel_data['Hull Type'] = vectorizer.fit_transform(vessel_data["Hull Type"])
-print(vessel_data['Hull Type'])
+
 
 vessel_data['Weather'] = vessel_data['Weather'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
 vessel_data['Weather'] = vectorizer.fit_transform(vessel_data["Weather"])
-print(vessel_data['Weather'])
+
 
 vessel_data['Wind Direction'] = vessel_data['Wind Direction'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
 vessel_data['Wind Direction'] = vectorizer.fit_transform(vessel_data["Wind Direction"])
-print(vessel_data['Wind Direction'])
+
 
 
 vessel_data['Sea State'] = vessel_data['Sea State'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
 vessel_data['Sea State'] = vectorizer.fit_transform(vessel_data["Sea State"])
-print(vessel_data['Sea State'])
+
 
 vessel_data['Departure'] = vessel_data['Departure'].str.lower().replace('[^a-zA-Z0-9]', ' ', regex = True)
 vessel_data['Departure'] = vectorizer.fit_transform(vessel_data["Departure"])
-print(vessel_data['Departure'])
+
 
 # Extract target column 'passed'
 target_col = 'OccNo'
