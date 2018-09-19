@@ -5,6 +5,7 @@
         </mat-card-title>
         <mat-card-content>
             <form (ngSubmit)="onSubmit()" [formGroup]="homeForm" class="form">
+
                 <table>
                     <tr>
                         <td>
@@ -19,26 +20,47 @@
                         </td>
                         <td>
                             <mat-form-field>
-                                <input matInput placeholder="Vessel Age" formControlName="vesselAge">
+                                <input type="text" placeholder="Vessel Sub Type" aria-label="Vessel Sub Type" matInput formControlName="vesselSubType" [matAutocomplete]="autoSubType">
+                                <mat-autocomplete #autoSubType="matAutocomplete">
+                                    <mat-option *ngFor="let option of vesselSubTypes" [value]="option | titlecase">
+                                        {{ option | titlecase}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                <input matInput placeholder="Vessel Age" formControlName="vesselAge" type="number" min="0" max="1000">
                             </mat-form-field>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <mat-form-field>
-                                <input matInput placeholder="Source Port" formControlName="sourcePort">
+                                <input type="text" placeholder="Source Country" aria-label="Source Country" matInput formControlName="sourceCountry" [matAutocomplete]="autoSource">
+                                <mat-autocomplete #autoSource="matAutocomplete">
+                                    <mat-option *ngFor="let option of ports" [value]="option | titlecase">
+                                        {{ option | titlecase}}
+                                    </mat-option>
+                                </mat-autocomplete>
                             </mat-form-field>
                         </td>
                         <td>
                             <mat-form-field>
-                                <input matInput placeholder="Destination Port" formControlName="destinationPort">
+                                <input type="text" placeholder="Destination Country" aria-label="Destination Country" matInput formControlName="destinationCountry"
+                                    [matAutocomplete]="autoDestination">
+                                <mat-autocomplete #autoDestination="matAutocomplete">
+                                    <mat-option *ngFor="let option of ports" [value]="option | titlecase">
+                                        {{ option | titlecase}}
+                                    </mat-option>
+                                </mat-autocomplete>
                             </mat-form-field>
                         </td>
                     </tr>
                     <br />
                     <tr>
                         <td>
-                            <mat-form-field >
+                            <mat-form-field>
                                 <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Date of Journey">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker touchUi="true" #picker></mat-datepicker>

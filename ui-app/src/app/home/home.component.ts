@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
     title: string;
     public homeForm: FormGroup;
     vesselTypes: string[] = Constants.VesselTypes;
+    vesselSubTypes: string[] = Constants.VesselSubTypes;
+    ports: string[] = Constants.Prots;
     // types: SimpleObject[] = Constants.VesselTypes;
     constructor(private formBuilder: FormBuilder) {
     }
@@ -23,14 +25,15 @@ export class HomeComponent implements OnInit {
         this.title = "Home - Newbie";
         this.homeForm = this.formBuilder.group({
             vesselType: [null, Validators.required],
+            vesselSubType: [null, Validators.required],
             vesselAge: [null, Validators.required],
-            sourcePort: [null, Validators.required],
-            destinationPort: [null, Validators.required],
+            sourceCountry: [null, Validators.required],
+            destinationCountry: [null, Validators.required],
             date: [null, Validators.required]
         })
     }
 
-    onSubmit(){
+    onSubmit() {
         console.log(this.homeForm.value);
     }
 
