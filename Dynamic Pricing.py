@@ -319,9 +319,9 @@ def printScores(y_test, y_pred, classif_name):
     import warnings
     warnings.filterwarnings("ignore", category=DeprecationWarning)
     print("--------------  " + classif_name + "  ------------------")
-    print("recall : %0.2f" % recall_score(y_test, y_pred,average='micro' ))
-    print("precision : %0.2f" % precision_score(y_test, y_pred,average='micro'))
-    print("f1 : %0.2f" % f1_score(y_test, y_pred,average='micro'))
+    print("recall : %0.2f" % recall_score(y_test, y_pred))
+    print("precision : %0.2f" % precision_score(y_test, y_pred))
+    print("f1 : %0.2f" % f1_score(y_test, y_pred))
     print("accuracy : %0.2f" % accuracy_score(y_test, y_pred))
     print("---------------------------------------------------")
 

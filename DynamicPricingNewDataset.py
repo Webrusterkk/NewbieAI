@@ -144,7 +144,8 @@ def predict_labels(clf, features, target):
 
     # Print and return results
     print("Made predictions in {:.4f} seconds.".format(end - start))
-    return printScores(target.values, y_pred, 'yes')
+    return f1_score(target.values, y_pred, average = 'micro')
+        # printScores(target.values, y_pred, 'yes')
     #return printScores()
 
 
@@ -160,9 +161,12 @@ def train_predict(clf, X_train, y_train, X_test, y_test):
     # Print the results of prediction for both training and testing
 
 
-
-    print("F1 score for training set: {:.4f}.".format(predict_labels(clf, X_train, y_train)))
-    print("F1 score for test set: {:.4f}.".format(predict_labels(clf, X_test, y_test)))
+    print('-------Training starts ------')
+    print(predict_labels(clf, X_train, y_train))
+    print('-------Training Ends ------')
+    print('-------Testing starts ------')
+    print(predict_labels(clf, X_test, y_test))
+    print('-------Testing Ends ------')
 
 
 
@@ -170,9 +174,9 @@ def printScores(y_test, y_pred, classif_name):
     import warnings
     warnings.filterwarnings("ignore", category=DeprecationWarning)
     print("--------------  " + classif_name + "  ------------------")
-    print("recall : %0.2f" % recall_score(y_test, y_pred ))
-    print("precision : %0.2f" % precision_score(y_test, y_pred))
-    print("f1 : %0.2f" % f1_score(y_test, y_pred))
+    print("recall : %0.2f" % recall_score(y_test, y_pred ,average='micro' ))
+    print("precision : %0.2f" % precision_score(y_test, y_pred,average='micro' ))
+    print("f1 : %0.2f" % f1_score(y_test, y_pred,average='micro'))
     print("accuracy : %0.2f" % accuracy_score(y_test, y_pred))
     print("---------------------------------------------------")
 
