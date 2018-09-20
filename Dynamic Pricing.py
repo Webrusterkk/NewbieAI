@@ -40,6 +40,7 @@ pd.options.display.max_columns = None  # Allows us to view all columns of a Data
 
 # Read vessel data
 vessel_data = pd.read_csv("MarineOcc_Eng.csv")
+
 print(" data read successfully!")
 
 # Display the first five records
