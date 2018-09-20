@@ -1,0 +1,75 @@
+<div>
+    <mat-card>
+        <mat-card-title>
+            Please give the below details to estimate risk
+        </mat-card-title>
+        <mat-card-content>
+            <form (ngSubmit)="onSubmit()" [formGroup]="homeForm" class="form">
+
+                <table>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input type="text" placeholder="Vessel Type" aria-label="Vessel Type" matInput formControlName="vesselType" [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of vesselTypes" [value]="option | titlecase">
+                                        {{ option | titlecase}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                <input type="text" placeholder="Vessel Sub Type" aria-label="Vessel Sub Type" matInput formControlName="vesselSubType" [matAutocomplete]="autoSubType">
+                                <mat-autocomplete #autoSubType="matAutocomplete">
+                                    <mat-option *ngFor="let option of vesselSubTypes" [value]="option | titlecase">
+                                        {{ option | titlecase}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                <input matInput placeholder="Vessel Age" formControlName="vesselAge" type="number" min="0" max="1000">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input type="text" placeholder="Source Country" aria-label="Source Country" matInput formControlName="sourceCountry" [matAutocomplete]="autoSource">
+                                <mat-autocomplete #autoSource="matAutocomplete">
+                                    <mat-option *ngFor="let option of ports" [value]="option | titlecase">
+                                        {{ option | titlecase}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                <input type="text" placeholder="Destination Country" aria-label="Destination Country" matInput formControlName="destinationCountry"
+                                    [matAutocomplete]="autoDestination">
+                                <mat-autocomplete #autoDestination="matAutocomplete">
+                                    <mat-option *ngFor="let option of ports" [value]="option | titlecase">
+                                        {{ option | titlecase}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <br />
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Date of Journey">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker touchUi="true" #picker></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <button mat-raised-button>Calculate Risk</button>
+                </table>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
