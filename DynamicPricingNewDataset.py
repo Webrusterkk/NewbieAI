@@ -11,14 +11,16 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from IPython.display import display  # Allows the use of display() for displaying DataFrames
+from sklearn.feature_extraction import DictVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import Ridge
 from sklearn.metrics import *
 from sklearn.model_selection import train_test_split
 
 pd.options.display.max_columns = None  # Allows us to view all columns of a DataFrame
 
 # Read vessel data
-vessel_data = pd.read_csv("47k.csv")
+vessel_data = pd.read_csv("Book.csv")
 
 print(" data read successfully!")
 
@@ -34,23 +36,23 @@ print("The dataset has {} rows and {} columns".format(n_rows, n_columns))
 
 
 # Extract feature columns
-feature_cols = ['YearBuilt', 'Gross Tonnage', 'Vessel Type','Vessel Sub Type', 'Hull Type', 'Weather','Wind Speed', 'Wind Direction','Sea State' ,'Departure' ,'Destination']
-
+# feature_cols = ['YearBuilt', 'Gross Tonnage', 'Vessel Type','Vessel Sub Type', 'Hull Type', 'Weather','Wind Speed', 'Wind Direction','Sea State' ,'Departure' ,'Destination']
+feature_cols =['From'	,'To'	,'Moving',	'V Type',	'Hull Material',	'Year Built',	'Occ Type'	,'Event Type'	,'Damage',	'Region']
 columns_to_format = ['Gross Tonnage', 'Vessel Type','Vessel Sub Type', 'Hull Type', 'Weather', 'Wind Direction','Sea State' ,'Departure' ,'Destination']
 
-def format_data(col_name):
-    global vectorizer
-    vectorizer = TfidfVectorizer(min_df=5)
-    vessel_data[col_name] = vessel_data[col_name].str.lower().replace('[^a-zA-Z0-9]', ' ', regex=True)
-    vessel_data[col_name] = vectorizer.fit_transform(vessel_data[col_name])
-
-for i in columns_to_format:
-    format_data(i)
-    print(i)
+# def format_data(col_name):
+#     global vectorizer
+#     vectorizer = TfidfVectorizer(min_df=5)
+#     vessel_data[col_name] = vessel_data[col_name].str.lower().replace('[^a-zA-Z0-9]', ' ', regex=True)
+#     vessel_data[col_name] = vectorizer.fit_transform(vessel_data[col_name])
+#
+# for i in columns_to_format:
+#     format_data(i)
+#     print(i)
 
 
 # Extract target column 'passed'
-target_col = 'OccNo'
+target_col = 'OccID'
 
 # Separate the data into feature data and target data (X_all and y_all, respectively)
 X_all = vessel_data[feature_cols]
@@ -142,7 +144,8 @@ def predict_labels(clf, features, target):
 
     # Print and return results
     print("Made predictions in {:.4f} seconds.".format(end - start))
-    return printScores(target.values, y_pred, 'yes')
+    return f1_score(target.values, y_pred, average = 'micro')
+        # printScores(target.values, y_pred, 'yes')
     #return printScores()
 
 
@@ -158,18 +161,22 @@ def train_predict(clf, X_train, y_train, X_test, y_test):
     # Print the results of prediction for both training and testing
 
 
+    print('-------Training starts ------')
+    print(predict_labels(clf, X_train, y_train))
+    print('-------Training Ends ------')
+    print('-------Testing starts ------')
+    print(predict_labels(clf, X_test, y_test))
+    print('-------Testing Ends ------')
 
-    print("F1 score for training set: {:.4f}.".format(predict_labels(clf, X_train, y_train)))
-    print("F1 score for test set: {:.4f}.".format(predict_labels(clf, X_test, y_test)))
 
 
 def printScores(y_test, y_pred, classif_name):
     import warnings
     warnings.filterwarnings("ignore", category=DeprecationWarning)
     print("--------------  " + classif_name + "  ------------------")
-    print("recall : %0.2f" % recall_score(y_test, y_pred ))
-    print("precision : %0.2f" % precision_score(y_test, y_pred))
-    print("f1 : %0.2f" % f1_score(y_test, y_pred))
+    print("recall : %0.2f" % recall_score(y_test, y_pred ,average='micro' ))
+    print("precision : %0.2f" % precision_score(y_test, y_pred,average='micro' ))
+    print("f1 : %0.2f" % f1_score(y_test, y_pred,average='micro'))
     print("accuracy : %0.2f" % accuracy_score(y_test, y_pred))
     print("---------------------------------------------------")
 
