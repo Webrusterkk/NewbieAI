@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { HttpModule } from '@angular/http';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { HttpModule } from '@angular/http';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    FlexLayoutModule
   ],
   exports: [
     MatButtonModule,
