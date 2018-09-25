@@ -12,7 +12,7 @@ const forceSSL = function() {
       return res.redirect(['https://', req.get('Host'), req.url].join(''));
     }
     next();
-  }
+  } 
 }
 
 // Instruct the app
