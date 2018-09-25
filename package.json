@@ -9,7 +9,8 @@
     "test": "ng test",
     "build": "ng build --aot --prod",
     "e2e": "ng e2e",
-    "ng": "ng"
+    "ng": "ng",
+    "postinstall": "ng build --aot --prod"
   },
   "keywords": [],
   "author": "",
