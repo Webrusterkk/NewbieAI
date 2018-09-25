@@ -3,8 +3,6 @@
 /.vscode
 /.stryker-tmp
 /build/tmp
-/dist
-**/dist
 /eca
 /node_modules
 **/node_modules
