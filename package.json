@@ -5,12 +5,12 @@
   "description": "Example project from an angular.io guide.",
   "scripts": {
     "lint": "tslint ./src/**/*.ts -t verbose",
-    "start": "ng serve",
     "test": "ng test",
     "build": "ng build --aot --prod",
     "e2e": "ng e2e",
     "ng": "ng",
-    "postinstall": "ng build --aot --prod"
+    "postinstall": "ng build --aot --prod",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
